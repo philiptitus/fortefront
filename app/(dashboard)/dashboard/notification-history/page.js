@@ -13,19 +13,6 @@ import { deleteNotice } from "store/actions/hostelActions";
 // Import actions
 import { logout } from "store/actions/userAction";
 
-// Helper components
-const ActionMenu = ({ onDelete }) => (
-    <Dropdown>
-        <Dropdown.Toggle as="a" href="#" className="text-muted text-primary-hover">
-            <MoreVertical size="15px" className="text-muted" />
-        </Dropdown.Toggle>
-        <Dropdown.Menu align="end">
-            <Dropdown.Item onClick={onDelete}>
-                Mark As Read
-            </Dropdown.Item>
-        </Dropdown.Menu>
-    </Dropdown>
-);
 
 const FolderList = ({ type, detail, id, onDelete }) => {
     // let iconComponent;
@@ -66,50 +53,6 @@ const FolderList = ({ type, detail, id, onDelete }) => {
         </Card>
     );
 };
-const ProjectsContributions = ({ notifications, loading, onLoadMore, hasMore, onDelete }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const filteredNotifications = notifications.filter(notification =>
-        notification.notification_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        notification.message.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    return (
-        <Col xl={12} lg={12} md={12} xs={12} className="mb-6">
-            <Card>
-                <Card.Body>
-                    <Card.Title as="h4">Recent Notifications</Card.Title>
-                    <InputGroup className="mb-4">
-                        <FormControl
-                            placeholder="Search Notifications"
-                            aria-label="Search Notifications"
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                        />
-                    </InputGroup>
-                    {filteredNotifications.map((item, index) => (
-                        <FolderList
-                            type={item?.notification_type}
-                            detail={item?.message}
-                            id={item?.id}
-                            onDelete={onDelete}
-                        />
-                    ))}
-                    {hasMore && (
-                        <div className="text-center mt-4">
-                            <ChevronDown size="24px" className="text-muted" onClick={onLoadMore} />
-                        </div>
-                    )}
-                    {loading && <Spinner animation="grow" variant="danger" />}
-                </Card.Body>
-            </Card>
-        </Col>
-    );
-};
 
 const Profile = () => {
     const [notifications, setNotifications] = useState([]);
@@ -148,7 +91,7 @@ const Profile = () => {
             setError(null);
             setNotifications(notifications.filter(notif => notif.id !== success.id));
         }
-    }, [deleteError, success]);
+    }, [deleteError, success,notifications]);
 
     useEffect(() => {
 
@@ -173,7 +116,7 @@ const Profile = () => {
     };
 
         fetchData();
-    }, [page, searchText, success]);
+    }, [page, searchText, success, userInfo?.token]);
 
     const handleLoadMore = () => {
         setPage((prevPage) => prevPage + 1);
@@ -210,6 +153,7 @@ const Profile = () => {
                     </InputGroup>
                     {notifications.map((item, index) => (
                         <FolderList
+                        key={index}
                             type={item?.notification_type}
                             detail={item?.message}
                             id={item?.id}

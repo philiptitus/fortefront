@@ -96,7 +96,7 @@ const ResetPassword = () => {
                       Reset Password
                     </Button>
                   </div>
-                  <span>Don't have an account? <Link href="/authentication/sign-in">Sign In</Link></span>
+                  <span>Don&apos;t have an account? <Link href="/authentication/sign-in">Sign In</Link></span>
                 </>
               )}
             </Form>

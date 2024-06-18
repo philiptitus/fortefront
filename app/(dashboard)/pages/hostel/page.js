@@ -89,12 +89,7 @@ useEffect(() => {
     }, [router,userInfo]);
 
 
-    const logoutHandler = () => {
-    dispatch(logout())
-    router.push('/authentication/sign-in')
-    window.location.reload();
-    
-    };
+
 
 
 
@@ -126,9 +121,9 @@ useEffect(() => {
 
 useEffect(() => {
 if (hasExpired) {
-  logoutHandler()
-}
-  }, [hasExpired]);
+  dispatch(logout())
+  router.push('/authentication/sign-in')}
+  }, [hasExpired, dispatch, router]);
 
 
 

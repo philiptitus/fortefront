@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from "next/navigation";
 import { logout } from "store/actions/userAction";
 
-
 // import sub components
 import { Notifications, DeleteAccount, GeneralSetting, EmailSetting, Preferences, VerifyAccount } from 'sub-components'
 
@@ -49,13 +48,7 @@ const Settings = () => {
       }
         }, [router,userInfo]);
   
-  
-        const logoutHandler = () => {
-        dispatch(logout())
-        router.push('/authentication/sign-in')
-        window.location.reload();
-        
-        };
+
 
 
 		  
@@ -85,9 +78,9 @@ const Settings = () => {
       
         useEffect(() => {
         if (hasExpired) {
-          logoutHandler()
-        }
-          }, [hasExpired]);
+          dispatch(logout())
+          router.push('/authentication/sign-in')        }
+          }, [hasExpired, dispatch, router]);
         
       
 

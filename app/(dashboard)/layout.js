@@ -1,6 +1,6 @@
 'use client'
 // import node module libraries
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 
 // import theme style scss file
 import 'styles/theme.scss';
@@ -20,6 +20,10 @@ export default function DashboardLayout({ children }) {
 
 	return (
 		<Provider store={store}>
+
+<Suspense fallback={<div>Loading...</div>}>
+
+
 		<div id="db-wrapper" className={`${showMenu ? '' : 'toggled'}`}>
 			<div className="navbar-vertical navbar">
 				<NavbarVertical
@@ -39,6 +43,11 @@ export default function DashboardLayout({ children }) {
 				{children}
 			</div>
 		</div>
+
+</Suspense>
+
+
+
 		</Provider>
 
 	)

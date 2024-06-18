@@ -67,12 +67,7 @@ const [currentTime, setCurrentTime] = useState(new Date());
 		  }, [router,userInfo]);
 
 
-		  const logoutHandler = () => {
-			dispatch(logout())
-			router.push('/authentication/sign-in')
-			window.location.reload();
-			
-		  };
+
 
           useEffect(() => {
             if (userInfo) {
@@ -103,9 +98,9 @@ const [currentTime, setCurrentTime] = useState(new Date());
     
       useEffect(() => {
       if (hasExpired) {
-        logoutHandler()
-      }
-        }, [hasExpired]);
+        dispatch(logout())
+        router.push('/authentication/sign-in')      }
+        }, [hasExpired, dispatch, router]);
       
     
 

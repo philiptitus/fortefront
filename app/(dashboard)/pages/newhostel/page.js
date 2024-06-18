@@ -50,12 +50,7 @@ const CreateHostel = () => {
 		  }, [router,userInfo]);
 
 
-		  const logoutHandler = () => {
-			dispatch(logout())
-			router.push('/authentication/sign-in')
-			window.location.reload();
-			
-		  };
+
 
 
       		  
@@ -86,9 +81,9 @@ const CreateHostel = () => {
 
   useEffect(() => {
 	if (hasExpired) {
-	  logoutHandler()
-	}
-	  }, [hasExpired]);
+		dispatch(logout())
+			router.push('/authentication/sign-in')	}
+	  }, [hasExpired, dispatch, router]);
 	
 
 

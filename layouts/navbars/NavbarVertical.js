@@ -25,7 +25,7 @@ import { useRouter } from 'next/navigation';
 import { logout } from 'store/actions/userAction';
 
 const NavbarVertical = (props) => {
-	const location = usePathname ()
+	const pathname = usePathname();
 	const dispatch = useDispatch();
 	const [userdata, setUserdata] = useState(null);
 
@@ -58,12 +58,6 @@ const NavbarVertical = (props) => {
 		  }, [router,userInfo]);
 
 
-		  const logoutHandler = () => {
-			dispatch(logout())
-			router.push('/authentication/sign-in')
-			window.location.reload();
-			
-		  };
 
 
 		  
@@ -94,9 +88,9 @@ const NavbarVertical = (props) => {
 
   useEffect(() => {
 	if (hasExpired) {
-	  logoutHandler()
-	}
-	  }, [hasExpired]);
+		dispatch(logout())
+			router.push('/authentication/sign-in')	}
+	  }, [hasExpired, dispatch, router]);
 	
 	
 	
@@ -186,14 +180,11 @@ const NavbarVertical = (props) => {
 
 	const generateLink = (item) => {
 		return (
-			(<Link
+			<Link
 				href={item.link}
-				className={`nav-link ${location === item.link ? 'active' : ''
-					}`}
-				onClick={(e) =>
-					isMobile ? props.onClick(!props.showMenu) : props.showMenu
-				}>
-
+				className={`nav-link ${pathname === item.link ? 'active' : ''}`}
+				onClick={(e) => isMobile ? props.onClick(!props.showMenu) : props.showMenu}
+			>
 				{item.name}
 				{''}
 				{item.badge ? (
@@ -206,10 +197,10 @@ const NavbarVertical = (props) => {
 				) : (
 					''
 				)}
-
-			</Link>)
+			</Link>
 		);
 	};
+	
 
 	const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -334,7 +325,7 @@ const NavbarVertical = (props) => {
 								return (
 									<Card bsPrefix="nav-item" key={index}>
 										{/* menu item without any childern items like Documentation and Changelog items*/}
-										<Link href={menu.link} className={`nav-link ${location === menu.link ? 'active' : ''} ${menu.title === 'Developer Resources' ? 'bg-warning text-white' : ''}`}>
+										<Link href={menu.link} className={`nav-link ${pathname === menu.link ? 'active' : ''} ${menu.title === 'Developer Resources' ? 'bg-warning text-white' : ''}`}>
 											{typeof menu.icon === 'string' ? (
 												<i className={`nav-icon fe fe-${menu.icon} me-2`}></i>
 											) : (menu.icon)}

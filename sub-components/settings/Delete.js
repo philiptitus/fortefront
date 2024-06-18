@@ -19,8 +19,7 @@ const DeleteScreen = () => {
         if (successDelete) {
             dispatch(logout());
             router.push('/authentication/sign-in');
-            window.location.reload();
-        }
+                }
     }, [dispatch, successDelete, router]);
 
     const handleClose = () => setShow(false);

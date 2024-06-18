@@ -39,12 +39,7 @@ const ProjectsContributions = () => {
   }, [dispatch, router, userInfo]);
 
 
-  const logoutHandler = () => {
-    dispatch(logout())
-    router.push('/authentication/sign-in')
-    window.location.reload();
-    
-    };
+
 
 
 
@@ -87,9 +82,9 @@ const ProjectsContributions = () => {
 
   useEffect(() => {
     if (hasExpired) {
-      logoutHandler()
-    }
-      }, [hasExpired]);
+      dispatch(logout())
+			router.push('/authentication/sign-in')    }
+      }, [hasExpired, dispatch, router]);
     
 
 

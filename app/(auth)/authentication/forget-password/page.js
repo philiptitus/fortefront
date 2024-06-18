@@ -30,7 +30,7 @@ const ForgetPassword = () => {
         <Card className="smooth-shadow-md">
           <Card.Body className="p-6">
             <div className="mb-4">
-              <p className="mb-6">Don't worry, we'll send you an email to reset your password. But You Have To Make Sure Your Account Was Verified Earlier.</p>
+              <p className="mb-6">Don&apos;t worry, we&apos;ll send you an email to reset your password. But You Have To Make Sure Your Account Was Verified Earlier.</p>
             </div>
             {hasMounted &&
               <Form onSubmit={handleSubmit2}>
@@ -63,7 +63,7 @@ const ForgetPassword = () => {
                         Reset Password
                       </Button>
                     </div>
-                    <span>Don't have an account? <Link href="/authentication/sign-in">Sign In</Link></span>
+                    <span>Don&apos;t have an account? <Link href="/authentication/sign-in">Sign In</Link></span>
                   </>
                 )}
               </Form>

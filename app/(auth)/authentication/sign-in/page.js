@@ -6,17 +6,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { register, login } from 'store/actions/userAction';
-import { useClient } from 'next/client';
 
-const useIsClient = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  return isClient;
-};
 
 const SignIn = () => {
   const router = useRouter();
@@ -33,22 +23,6 @@ const SignIn = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { error: errorLogin, loading: loadingLogin, userInfo: userInfoLogin } = userLogin;
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      setError("The Passwords Did not Match !");
-    } else {
-      try {
-        await dispatch(register(name, email, password));
-        if (success) {
-          router.push('/authentication/sign-in');
-        }
-      } catch (error) {
-        setError(error);
-      }
-    }
-  };
 
   const LoginHandler = (e) => {
     e.preventDefault();

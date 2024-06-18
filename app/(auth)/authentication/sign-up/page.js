@@ -78,7 +78,7 @@ const SignUp = () => {
                 {success &&
                   <Alert variant="success">
                     <CheckCircleFill size={25} className="me-1" />
-                    "You Can Now Click On Log In"
+                    &apos;You Can Now Click On Log In&apos;
                   </Alert>
                 }
                 <Form.Group className="mb-3" controlId="username">
