@@ -23,10 +23,11 @@
     "bootstrap 5"
   ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "preinstall": "npx npm-force-resolutions",  
+    "dev": "npm install --legacy-peer-deps && next dev", 
+    "build": "npm install --legacy-peer-deps && next build",  
+    "start": "npm install --legacy-peer-deps && next start",  
+    "lint": "next lint"  
   },
   "dependencies": {
     "@vercel/analytics": "^1.0.1",
