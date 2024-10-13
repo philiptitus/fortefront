@@ -1,6 +1,4 @@
-Here's the modified README for your app, **Forte**, using the original DashUI template as a base but reflecting the actual details of your project:
 
----
 
 # Forte - Hostel Management System
 
